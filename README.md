@@ -12,7 +12,7 @@ An ASP.NET Core (.NET 8) Web API that converts values between units of length, t
 dotnet restore
 dotnet build
 dotnet test
-dotnet run --project src/UnitConversionApi
+dotnet run --project src/UnitConversionApi   # Swagger UI (Development): http://localhost:5169/swagger
 ```
 
 ## Project layout

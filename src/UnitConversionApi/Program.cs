@@ -17,6 +17,8 @@ builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
         return new BadRequestObjectResult(problem) { ContentTypes = { "application/problem+json" } };
     };
 });
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.AddSingleton<UnitRegistry>();
@@ -25,6 +27,13 @@ builder.Services.AddScoped<IUnitConversionService, UnitConversionService>();
 var app = builder.Build();
 
 app.UseExceptionHandler();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
