@@ -1,0 +1,13 @@
+@host = http://localhost:5169
+
+### Valid conversion (200)
+POST {{host}}/api/conversions
+Content-Type: application/json
+
+{ "value": 100, "fromUnit": "celsius", "toUnit": "fahrenheit" }
+
+### Incompatible units (400, Conversion.IncompatibleUnits)
+POST {{host}}/api/conversions
+Content-Type: application/json
+
+{ "value": 1, "fromUnit": "meter", "toUnit": "celsius" }
